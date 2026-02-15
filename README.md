@@ -58,7 +58,3 @@
 - 추천 결과를 사용자별 예측 평점 내림차순으로 정렬해 출력
 - Colab 링크: <https://colab.research.google.com/drive/15OMp8TaBrVAOhrO7ooOT2h7AQXT8guUK>
 
-## 비고
-
-- `.webloc` 파일은 macOS 웹 바로가기 파일입니다.
-- 노트북은 Jupyter/Colab 환경에서 확인할 수 있습니다.
