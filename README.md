@@ -32,17 +32,31 @@
 - `minSupport=0.001`로 재학습 후 결과 비교 (`num_freqItemsets2`, `num_associationRules2`)
 - 최종 연관 규칙을 confidence 내림차순으로 정렬 (`associationRules`)
 
-### 3주차 - Colab 3 링크 과제
+### 3주차 - K-Means & PCA
 
-- 제출본은 로컬 ipynb 대신 Colab 링크 파일(`.webloc`) 형태로 보관
+- Breast Cancer Wisconsin 데이터셋을 불러와 Spark용 feature 벡터로 변환
+- 원본 feature에 대해 K-Means(`k=2`, `seed=1`) 군집화 수행
+- Silhouette score 계산으로 군집 품질 평가
+- 예측 클러스터와 정답 레이블을 비교해 올바르게 군집화된 데이터 수 계산
+  - 클러스터 라벨 뒤집힘(0/1 swap) 가능성을 고려해 최대 일치 개수로 평가
+- PCA(`k=2`)로 차원 축소 후 2차원 좌표 생성
+- 차원 축소 데이터에 다시 K-Means를 수행하고 Silhouette score 재평가
+- 아래 2가지 산점도 시각화 수행
+  - PCA 공간에서 클러스터 예측 결과 시각화
+  - PCA 공간에서 실제 레이블 기준 시각화
 - Colab 링크: <https://colab.research.google.com/drive/1m4Y-FdUq79wAA7te-o8Mx6Gq0WKRsuSj>
-- 로컬 저장소에는 링크 파일만 있어 세부 코드/분석 내용은 해당 Colab 노트북에서 확인 가능
 
-### 4주차 - Colab 4 링크 과제
+### 4주차 - Collaborative Filtering (ALS)
 
-- 제출본은 로컬 ipynb 대신 Colab 링크 파일(`.webloc`) 형태로 보관
+- MovieLens 100K 기반 데이터(`MovieLens.training`, `MovieLens.test`, `MovieLens.item`) 로드
+- 훈련/테스트 평점 수와 전체 영화 수를 계산해 데이터 규모 확인
+- Spark MLlib의 ALS(Alternating Least Squares)로 추천 모델 학습
+  - `userCol=user_id`, `itemCol=item_id`, `ratingCol=rating`
+  - `coldStartStrategy=drop`, `seed=2025`
+- 테스트셋 예측 결과로 RMSE 계산 및 성능 평가
+- 학습된 모델을 사용해 `user_id > 930` 사용자 대상 Top-10 영화 추천 생성
+- 추천 결과를 사용자별 예측 평점 내림차순으로 정렬해 출력
 - Colab 링크: <https://colab.research.google.com/drive/15OMp8TaBrVAOhrO7ooOT2h7AQXT8guUK>
-- 로컬 저장소에는 링크 파일만 있어 세부 코드/분석 내용은 해당 Colab 노트북에서 확인 가능
 
 ## 비고
 
